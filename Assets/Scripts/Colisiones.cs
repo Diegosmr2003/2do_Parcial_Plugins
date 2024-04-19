@@ -13,7 +13,14 @@ public class Colisiones : MonoBehaviour
         {
             SceneManager.LoadScene(2);
         }
-        
+
+        if (other.gameObject.name == "Guardian")
+        {
+            SceneManager.LoadScene(3);
+            Cursor.lockState = CursorLockMode.None;
+            Cursor.visible = true;
+        }
+
     }
 
 
