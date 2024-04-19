@@ -23,6 +23,15 @@ public class PlayerMovement : MonoBehaviour
 
     Rigidbody rb;
 
+
+    //Audio
+    AudioManager audioManager;
+
+    private void Awake()
+    {
+        audioManager = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioManager>();
+    }
+
     private void Start()
     {
         rb = GetComponent<Rigidbody>();
@@ -47,6 +56,7 @@ public class PlayerMovement : MonoBehaviour
     private void FixedUpdate()
     {
         MovePlayer();
+        
     }
 
     private void MyInput()
@@ -55,17 +65,19 @@ public class PlayerMovement : MonoBehaviour
         verticalInput = Input.GetAxisRaw("Vertical");
     }
 
-    private void MovePlayer()
+    public void MovePlayer()
     {
         //calculate movement direction
-
         moveDirection = orientation.forward * verticalInput + orientation.right * horizontalInput; //Walk in the direction youre looking
         rb.AddForce(moveDirection.normalized * moveSpeed *10f, ForceMode.Force);
+        
+
 
         if (Input.GetKey(KeyCode.LeftShift))
         {
             rb.AddForce(moveDirection.normalized * (moveSpeed*7f) * 10f, ForceMode.Force);
         }
+  
     }
     
     private void SpeedControl()

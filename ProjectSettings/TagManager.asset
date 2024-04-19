@@ -5,6 +5,7 @@ TagManager:
   serializedVersion: 2
   tags:
   - destination
+  - Audio
   layers:
   - Default
   - TransparentFX
