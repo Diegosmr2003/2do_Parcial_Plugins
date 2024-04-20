@@ -8,6 +8,8 @@ public class AudioManager : MonoBehaviour
 
     [Header("------------Audio Clip-------------")]
     public AudioClip background;
+    public AudioClip gunshoot;
+    public AudioClip gunnoammo;
 
     private void Start()
     {

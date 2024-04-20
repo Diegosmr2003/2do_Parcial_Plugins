@@ -21,6 +21,11 @@ public class Colisiones : MonoBehaviour
             Cursor.visible = true;
         }
 
+        if (gameObject.name == "9mm_bullet" &&  other.gameObject.name == "Guardian")
+        {
+            Destroy(other.gameObject);
+        }
+
     }
 
 
