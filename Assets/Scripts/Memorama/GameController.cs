@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Unity.VisualScripting.Antlr3.Runtime.Tree;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class GameController : MonoBehaviour
 {
@@ -16,13 +17,18 @@ public class GameController : MonoBehaviour
 
     private bool firstGuess, secondGuess;
     
-    private int countGuesses;
+    public int countGuesses;
     private int countCorrectGuesses;
     private int gameGuesses;
 
     private int firstGuessIndex, secondGuessIndex;
 
     private string firstCardGuess, secondCardGuess;
+
+    public Timer timer;
+
+
+
     void Start()
     {
         GetButtons();
@@ -91,7 +97,7 @@ public class GameController : MonoBehaviour
 
     IEnumerator CheckIfTheCardsMatch()
     {
-        yield return new WaitForSeconds(1);
+        yield return new WaitForSeconds(0.3f);
         if(firstCardGuess == secondCardGuess)
         {
             yield return new WaitForSeconds(0.5f);
@@ -112,7 +118,7 @@ public class GameController : MonoBehaviour
             btns[secondGuessIndex].image.sprite = cbImage;
         }
 
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(0.2f);
         firstGuess = secondGuess = false;
 
     }
@@ -125,6 +131,8 @@ public class GameController : MonoBehaviour
         {
             Debug.Log("Game Finished");
             Debug.Log("It took you " + countGuesses + " guesses to finish the game");
+            timer.GameFinished();
+            SceneManager.LoadScene(0);
         }
     }
 
@@ -138,4 +146,5 @@ public class GameController : MonoBehaviour
             list[randomIndex] = temp;
         }
     }
+
 }
