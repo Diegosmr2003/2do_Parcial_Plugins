@@ -8,7 +8,6 @@ public class Colisiones : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        print("Colision");
         if (other.gameObject.name == "WinDoor")
         {
             SceneManager.LoadScene(2);
@@ -19,11 +18,6 @@ public class Colisiones : MonoBehaviour
             SceneManager.LoadScene(3);
             Cursor.lockState = CursorLockMode.None;
             Cursor.visible = true;
-        }
-
-        if (gameObject.name == "9mm_bullet" &&  other.gameObject.name == "Guardian")
-        {
-            Destroy(other.gameObject);
         }
 
     }

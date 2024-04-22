@@ -4,16 +4,29 @@ using UnityEngine;
 
 public class Bullet : MonoBehaviour
 {
-    public float life = 1;
-
-    void Awake()
+    private void OnTriggerEnter(Collider other)
     {
-        Destroy(gameObject, life);
+
+        if (other.gameObject.name == "Guardian")
+        {
+            Destroy(other.gameObject);
+            Destroy(gameObject);
+        }
+
     }
 
-    void onCollisionEnter(Collision collision)
+    private void OnCollisionEnter(Collision collision)
     {
-        Destroy(collision.gameObject);
-        Destroy(gameObject);
+
+        if (collision.gameObject.name == "Floor" || collision.gameObject.name == "Ceiling" || collision.gameObject.name == "Wall")
+        {
+            Destroy(gameObject);
+        }
+
+    }
+
+    private void Update()
+    {
+        Destroy(gameObject, 0.2f);
     }
 }

@@ -10,6 +10,8 @@ public class AudioManager : MonoBehaviour
     public AudioClip background;
     public AudioClip gunshoot;
     public AudioClip gunnoammo;
+    public AudioClip chase;
+    public AudioClip nearguardian;
 
     private void Start()
     {
@@ -20,6 +22,11 @@ public class AudioManager : MonoBehaviour
     public void playSFX(AudioClip clip) //Este método es público para que se pueda acceder a él mediante otros scripts
     {
         sfxSource.PlayOneShot(clip);
+    }
+
+    public void stopSFX()
+    {
+        sfxSource.Stop();
     }
 
 }
