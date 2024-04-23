@@ -26,7 +26,6 @@ public class GameController : MonoBehaviour
     private string firstCardGuess, secondCardGuess;
 
     public Timer timer;
-
     void Start()
     {
         GetButtons();
@@ -124,12 +123,17 @@ public class GameController : MonoBehaviour
     void CheckIfTheGameIsFinished()
     {
         countCorrectGuesses++;
-        
-        if(countCorrectGuesses == gameGuesses)
+        if (countCorrectGuesses == gameGuesses)
         {
             timer.GameFinished();
-            SceneManager.LoadScene(0);
+            StartCoroutine(WaitAndLoadScene(4, 3f));
         }
+    }
+
+    IEnumerator WaitAndLoadScene(int sceneIndex, float delay)
+    {
+        yield return new WaitForSeconds(delay);
+        SceneManager.LoadScene(sceneIndex);
     }
 
     void Shuffle(List<Sprite> list)
@@ -142,5 +146,4 @@ public class GameController : MonoBehaviour
             list[randomIndex] = temp;
         }
     }
-
 }
