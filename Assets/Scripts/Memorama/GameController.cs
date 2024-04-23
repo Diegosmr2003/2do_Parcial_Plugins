@@ -27,8 +27,6 @@ public class GameController : MonoBehaviour
 
     public Timer timer;
 
-
-
     void Start()
     {
         GetButtons();
@@ -129,8 +127,6 @@ public class GameController : MonoBehaviour
         
         if(countCorrectGuesses == gameGuesses)
         {
-            Debug.Log("Game Finished");
-            Debug.Log("It took you " + countGuesses + " guesses to finish the game");
             timer.GameFinished();
             SceneManager.LoadScene(0);
         }
