@@ -736,7 +736,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   musicSource: {fileID: 233233103}
-  background: {fileID: 8300000, guid: 4555b3ebb248f1f429dd3be3856dad9e, type: 3}
+  background: {fileID: 8300000, guid: 52206da9d8cd1c845a1a81ac359918ac, type: 3}
 --- !u!1 &513458680
 GameObject:
   m_ObjectHideFlags: 0
