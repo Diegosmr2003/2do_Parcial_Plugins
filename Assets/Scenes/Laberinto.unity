@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028334, g: 0.22571328, b: 0.3069217, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -146,7 +146,7 @@ GameObject:
   - component: {fileID: 41158271}
   m_Layer: 0
   m_Name: PlayerObj
-  m_TagString: Untagged
+  m_TagString: JUGADOR
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -10898,13 +10898,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 16e81a7b19f7bea43b86704af09113da, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  puntosDeRecorrido:
-  - {x: 9.5, y: 0.21, z: 11.84}
-  - {x: 14.68, y: 0.21, z: 6.86}
-  - {x: 0.06, y: 0.21, z: -4.4}
-  - {x: 6.55, y: 0.21, z: -13.05}
-  - {x: 11.34, y: 0.21, z: -4.34}
-  - {x: 13.11, y: 0.21, z: -13.05}
+  player: {fileID: 41158262}
 --- !u!136 &1996052427
 CapsuleCollider:
   m_ObjectHideFlags: 0
