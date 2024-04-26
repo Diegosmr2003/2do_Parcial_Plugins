@@ -85,7 +85,7 @@ public class GuardianScript : MonoBehaviour
     void Chase()
     {
         if (following == true) {
-            agenteNavMesh.SetDestination(player.transform.position);
+         //   agenteNavMesh.SetDestination(player.transform.position);
 
         }
         float SightRange = 10f;
