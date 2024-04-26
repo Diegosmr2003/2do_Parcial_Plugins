@@ -27,25 +27,22 @@ public class MonsterSFX : MonoBehaviour
     {
         while (true)
         {
-            while (true)
+            float distanceToPlayer = Vector3.Distance(transform.position, player.position);
+
+            if (distanceToPlayer < 12f && distanceToPlayer > 1f && !persecucion.following)
             {
-                float distanceToPlayer = Vector3.Distance(transform.position, player.position);
-
-                if (distanceToPlayer < 7f && distanceToPlayer > 1f /*&& !isChasing*/)
-                {
-                    ChangeMusic(approachMusic);
-                }
-                else if (distanceToPlayer >= 10f)
-                {
-                    ChangeMusic(backgroundMusic);
-                }
-                else if (persecucion.following)
-                {
-                    ChangeMusic(chaseMusic);
-                }
-
-                yield return new WaitForSeconds(1f); // Comprueba la distancia cada segundo
+                ChangeMusic(approachMusic);
             }
+            else if (distanceToPlayer >= 12f)
+            {
+                ChangeMusic(backgroundMusic);
+            }
+            else if (persecucion.following)
+            {
+                persecucion.following = false;
+                ChangeMusic(chaseMusic);
+            }
+            yield return new WaitForSeconds(1f); // Comprueba la distancia cada segundo 
         }
     }
 
