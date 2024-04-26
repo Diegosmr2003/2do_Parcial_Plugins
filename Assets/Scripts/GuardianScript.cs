@@ -37,7 +37,7 @@ public class GuardianScript : MonoBehaviour
         new Vector3(74f, 0.21f, -5.3f)
         }*/
     };
-    bool following = false;
+    public bool following = false;
     public GameObject player;
     private NavMeshAgent agenteNavMesh;
     private Vector3[] recorridoActual;
@@ -84,19 +84,21 @@ public class GuardianScript : MonoBehaviour
 
     void Chase()
     {
+        agenteNavMesh.speed = 2f;
         if (following == true) {
          //   agenteNavMesh.SetDestination(player.transform.position);
 
         }
-        float SightRange = 10f;
+        float SightRange = 20f;
         RaycastHit hit;
-        if(Physics.Raycast(agenteNavMesh.transform.position, agenteNavMesh.transform.forward, out hit, SightRange))
+        if(Physics.BoxCast(agenteNavMesh.transform.position, agenteNavMesh.transform.localScale, agenteNavMesh.transform.forward, out hit, agenteNavMesh.transform.rotation, SightRange))
         {
             if (hit.transform.gameObject.CompareTag("JUGADOR"))
             {
-                print("djjahHFDJSA");
+                print("YA TE VI PERRO");
                 agenteNavMesh.SetDestination(hit.transform.position);
                 following = true;
+                agenteNavMesh.speed = 7f;
             }
         }
     }

@@ -7,7 +7,7 @@ public class Bullet : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
 
-        if (other.gameObject.name == "Guardian")
+        if (other.gameObject.name == "GuardianBox")
         {
             Destroy(other.gameObject);
             Destroy(gameObject);

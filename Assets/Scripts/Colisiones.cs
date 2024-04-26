@@ -15,7 +15,7 @@ public class Colisiones : MonoBehaviour
             Cursor.visible = true;
         }
 
-        if (other.gameObject.name == "Guardian")
+        if (other.gameObject.name == "GuardianBox")
         {
             SceneManager.LoadScene(3);
             Cursor.lockState = CursorLockMode.None;

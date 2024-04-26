@@ -12,9 +12,12 @@ public class MonsterSFX : MonoBehaviour
     private AudioSource audioSource;
     private bool isChasing = false;
 
+    GuardianScript persecucion;
+
     private void Start()
     {
         audioSource = GetComponent<AudioSource>();
+        persecucion = GetComponent<GuardianScript>();
         audioSource.clip = backgroundMusic;
         audioSource.Play();
         StartCoroutine(CheckPlayerDistance());
@@ -35,6 +38,10 @@ public class MonsterSFX : MonoBehaviour
                 else if (distanceToPlayer >= 10f)
                 {
                     ChangeMusic(backgroundMusic);
+                }
+                else if (persecucion.following)
+                {
+                    ChangeMusic(chaseMusic);
                 }
 
                 yield return new WaitForSeconds(1f); // Comprueba la distancia cada segundo
