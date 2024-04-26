@@ -28,11 +28,11 @@ public class MonsterSFX : MonoBehaviour
             {
                 float distanceToPlayer = Vector3.Distance(transform.position, player.position);
 
-                if (distanceToPlayer < 10f && distanceToPlayer > 1 /*&& !isChasing*/)
+                if (distanceToPlayer < 7f && distanceToPlayer > 1f /*&& !isChasing*/)
                 {
                     ChangeMusic(approachMusic);
                 }
-                else if (distanceToPlayer >= 20f)
+                else if (distanceToPlayer >= 10f)
                 {
                     ChangeMusic(backgroundMusic);
                 }
