@@ -42,6 +42,7 @@ public class GuardianScript : MonoBehaviour
     private NavMeshAgent agenteNavMesh;
     private Vector3[] recorridoActual;
     private int indiceDestinoActual = 0;
+    RaycastHit hit;
 
     void Start()
     {
@@ -85,12 +86,14 @@ public class GuardianScript : MonoBehaviour
     void Chase()
     {
         agenteNavMesh.speed = 2f;
+        
         if (following == true) {
-         //   agenteNavMesh.SetDestination(player.transform.position);
+            //agenteNavMesh.SetDestination(player.transform.position);
 
         }
-        float SightRange = 50f;
-        RaycastHit hit;
+   
+        float SightRange = 100f;
+        
         if(Physics.BoxCast(agenteNavMesh.transform.position, agenteNavMesh.transform.localScale*2f, agenteNavMesh.transform.forward, out hit, agenteNavMesh.transform.rotation, SightRange))
         {
             if (hit.transform.gameObject.CompareTag("JUGADOR"))
@@ -99,7 +102,31 @@ public class GuardianScript : MonoBehaviour
                 agenteNavMesh.SetDestination(hit.transform.position);
                 following = true;
                 agenteNavMesh.speed = 7f;
+                agenteNavMesh.acceleration = 70f;
             }
         }
     }
+
+    void OnDrawGizmos()
+    {
+        Gizmos.color = Color.red;
+
+        //Check if there has been a hit yet
+        if (Physics.BoxCast(transform.position + transform.forward, transform.localScale * 2f, transform.forward, out hit, transform.rotation, 100f))
+        {
+            //Draw a Ray forward from GameObject toward the hit
+            Gizmos.DrawRay(transform.position, transform.forward * 100f);
+            //Draw a cube that extends to where the hit exists
+            Gizmos.DrawWireCube(transform.position + transform.forward, transform.localScale);
+        }
+        //If there hasn't been a hit yet, draw the ray at the maximum distance
+        else
+        {
+            //Draw a Ray forward from GameObject toward the maximum distance
+            Gizmos.DrawRay(transform.position, transform.forward * 100f);
+            //Draw a cube at the maximum distance
+            Gizmos.DrawWireCube(transform.position + transform.forward, transform.localScale);
+        }
+    }
+
 }

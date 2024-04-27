@@ -45,7 +45,6 @@ public class MonsterSFX : MonoBehaviour
 
             if (distanceToPlayer < 12f && distanceToPlayer > 1f && !persecucion.following)
             {
-                
                 ChangeMusic(approachMusic);
             }
             else if (distanceToPlayer >= 12f)
@@ -87,7 +86,7 @@ public class MonsterSFX : MonoBehaviour
             camera.deactivateEffect();
         }
     }
-    /*
+
     private void OnDestroy()
     {
         if (camera != null)
@@ -95,6 +94,5 @@ public class MonsterSFX : MonoBehaviour
             camera.deactivateEffect();
         }
     }
-    */
 
 }
