@@ -89,13 +89,13 @@ public class GuardianScript : MonoBehaviour
          //   agenteNavMesh.SetDestination(player.transform.position);
 
         }
-        float SightRange = 30f;
+        float SightRange = 50f;
         RaycastHit hit;
         if(Physics.BoxCast(agenteNavMesh.transform.position, agenteNavMesh.transform.localScale*2f, agenteNavMesh.transform.forward, out hit, agenteNavMesh.transform.rotation, SightRange))
         {
             if (hit.transform.gameObject.CompareTag("JUGADOR"))
             {
-                print("YA TE VI PERRO");
+                //print("YA TE VI PERRO");
                 agenteNavMesh.SetDestination(hit.transform.position);
                 following = true;
                 agenteNavMesh.speed = 7f;

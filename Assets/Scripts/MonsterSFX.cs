@@ -18,6 +18,8 @@ public class MonsterSFX : MonoBehaviour
 
     CameraChange camera;
 
+    private bool detected;
+
     private void Start()
     {
         audioSource = GetComponent<AudioSource>();
@@ -28,6 +30,10 @@ public class MonsterSFX : MonoBehaviour
         availableGuardians = GameObject.Find("GuardianBox");
 
         camera = GetComponent<CameraChange>();
+
+        detected = false;
+
+        camera.deactivateEffect();
 
     }
 
@@ -70,10 +76,14 @@ public class MonsterSFX : MonoBehaviour
     {
         if (Vector3.Distance(transform.position, player.position) < 12f && Vector3.Distance(transform.position, player.position) > 1f)
         {
+            detected = true;
+            print("Efecto activado");
             camera.activateEffect();
         }
-        else if (Vector3.Distance(transform.position, player.position) >= 12f)
+        else if (detected)
         {
+            print("Efecto desactivado");
+            detected = false;
             camera.deactivateEffect();
         }
     }
@@ -86,6 +96,5 @@ public class MonsterSFX : MonoBehaviour
         }
     }
     */
-    
 
 }

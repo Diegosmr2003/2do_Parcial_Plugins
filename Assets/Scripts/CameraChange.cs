@@ -14,7 +14,6 @@ public class CameraChange : MonoBehaviour
     public void activateEffect()
     {
         if (mainCamera.GetComponent<Effects>().enabled != true){
-
             mainCamera.GetComponent<Effects>().enabled = true;
         }
         
@@ -23,7 +22,6 @@ public class CameraChange : MonoBehaviour
     public void deactivateEffect()
     {
         if (mainCamera.GetComponent<Effects>().enabled != false){
-
             mainCamera.GetComponent<Effects>().enabled = false;
         }
     }
