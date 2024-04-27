@@ -4,15 +4,27 @@ using UnityEngine;
 
 public class CameraChange : MonoBehaviour
 {
-    public GameObject camera;
+    public GameObject mainCamera;
+
+    void Start()
+    {
+        mainCamera.GetComponent<Effects>();
+    }
 
     public void activateEffect()
     {
-        camera.GetComponent<Effects>().enabled = true;
+        if (mainCamera.GetComponent<Effects>().enabled != true){
+
+            mainCamera.GetComponent<Effects>().enabled = true;
+        }
+        
     }
 
     public void deactivateEffect()
     {
-        camera.GetComponent<Effects>().enabled = false;
+        if (mainCamera.GetComponent<Effects>().enabled != false){
+
+            mainCamera.GetComponent<Effects>().enabled = false;
+        }
     }
 }

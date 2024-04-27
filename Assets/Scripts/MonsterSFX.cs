@@ -16,6 +16,8 @@ public class MonsterSFX : MonoBehaviour
 
     GameObject availableGuardians;
 
+    CameraChange camera;
+
     private void Start()
     {
         audioSource = GetComponent<AudioSource>();
@@ -24,6 +26,8 @@ public class MonsterSFX : MonoBehaviour
         audioSource.Play();
         StartCoroutine(CheckPlayerDistance());
         availableGuardians = GameObject.Find("GuardianBox");
+
+        camera = GetComponent<CameraChange>();
 
     }
 
@@ -35,6 +39,7 @@ public class MonsterSFX : MonoBehaviour
 
             if (distanceToPlayer < 12f && distanceToPlayer > 1f && !persecucion.following)
             {
+                
                 ChangeMusic(approachMusic);
             }
             else if (distanceToPlayer >= 12f)
@@ -63,9 +68,24 @@ public class MonsterSFX : MonoBehaviour
 
     private void Update()
     {
-        if (availableGuardians == null)
+        if (Vector3.Distance(transform.position, player.position) < 12f && Vector3.Distance(transform.position, player.position) > 1f)
         {
-            ChangeMusic(backgroundMusic);
+            camera.activateEffect();
+        }
+        else if (Vector3.Distance(transform.position, player.position) >= 12f)
+        {
+            camera.deactivateEffect();
         }
     }
+    /*
+    private void OnDestroy()
+    {
+        if (camera != null)
+        {
+            camera.deactivateEffect();
+        }
+    }
+    */
+    
+
 }
