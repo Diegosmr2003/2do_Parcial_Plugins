@@ -16,7 +16,7 @@ public class GuardianScript : MonoBehaviour
         new Vector3(11.34f, 0.21f, -4.34f),
         new Vector3(13.11f, 0.21f, -13.05f)
 
-        }/*,
+        },
 
         new Vector3[]
         {
@@ -35,7 +35,7 @@ public class GuardianScript : MonoBehaviour
         new Vector3(82.4f, 0.21f,1.2f),
         new Vector3(11.34f, 0.21f, -10.28f),
         new Vector3(74f, 0.21f, -5.3f)
-        }*/
+        }
     };
     public bool following = false;
     public GameObject player;
@@ -89,9 +89,9 @@ public class GuardianScript : MonoBehaviour
          //   agenteNavMesh.SetDestination(player.transform.position);
 
         }
-        float SightRange = 20f;
+        float SightRange = 30f;
         RaycastHit hit;
-        if(Physics.BoxCast(agenteNavMesh.transform.position, agenteNavMesh.transform.localScale, agenteNavMesh.transform.forward, out hit, agenteNavMesh.transform.rotation, SightRange))
+        if(Physics.BoxCast(agenteNavMesh.transform.position, agenteNavMesh.transform.localScale*2f, agenteNavMesh.transform.forward, out hit, agenteNavMesh.transform.rotation, SightRange))
         {
             if (hit.transform.gameObject.CompareTag("JUGADOR"))
             {

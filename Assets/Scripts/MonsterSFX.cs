@@ -14,6 +14,8 @@ public class MonsterSFX : MonoBehaviour
 
     GuardianScript persecucion;
 
+    GameObject availableGuardians;
+
     private void Start()
     {
         audioSource = GetComponent<AudioSource>();
@@ -21,6 +23,8 @@ public class MonsterSFX : MonoBehaviour
         audioSource.clip = backgroundMusic;
         audioSource.Play();
         StartCoroutine(CheckPlayerDistance());
+        availableGuardians = GameObject.Find("GuardianBox");
+
     }
 
     IEnumerator CheckPlayerDistance()
@@ -35,6 +39,7 @@ public class MonsterSFX : MonoBehaviour
             }
             else if (distanceToPlayer >= 12f)
             {
+                
                 ChangeMusic(backgroundMusic);
             }
             else if (persecucion.following)
@@ -53,6 +58,14 @@ public class MonsterSFX : MonoBehaviour
             audioSource.Stop();
             audioSource.clip = newClip;
             audioSource.Play();
+        }
+    }
+
+    private void Update()
+    {
+        if (availableGuardians == null)
+        {
+            ChangeMusic(backgroundMusic);
         }
     }
 }
