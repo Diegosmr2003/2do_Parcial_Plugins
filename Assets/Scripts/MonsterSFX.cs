@@ -86,5 +86,12 @@ public class MonsterSFX : MonoBehaviour
         }
     }
 
+    private void OnDestroy()
+    {
+        if (cameraFx != null)
+        {
+            cameraFx.deactivateEffect();
+        }
+    }
 
 }
