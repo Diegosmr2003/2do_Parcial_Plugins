@@ -10,13 +10,12 @@ public class MonsterSFX : MonoBehaviour
     public AudioClip chaseMusic;
 
     private AudioSource audioSource;
-    private bool isChasing = false;
 
     GuardianScript persecucion;
 
     GameObject availableGuardians;
 
-    CameraChange camera;
+    CameraChange cameraFx;
 
     private bool detected;
 
@@ -29,11 +28,11 @@ public class MonsterSFX : MonoBehaviour
         StartCoroutine(CheckPlayerDistance());
         availableGuardians = GameObject.Find("GuardianBox");
 
-        camera = GetComponent<CameraChange>();
+        cameraFx = GetComponent<CameraChange>();
 
         detected = false;
 
-        camera.deactivateEffect();
+        cameraFx.deactivateEffect();
 
     }
 
@@ -77,21 +76,21 @@ public class MonsterSFX : MonoBehaviour
         {
             detected = true;
             print("Efecto activado");
-            camera.activateEffect();
+            cameraFx.activateEffect();
         }
         else if (detected)
         {
             print("Efecto desactivado");
             detected = false;
-            camera.deactivateEffect();
+            cameraFx.deactivateEffect();
         }
     }
 
     private void OnDestroy()
     {
-        if (camera != null)
+        if (cameraFx != null)
         {
-            camera.deactivateEffect();
+            cameraFx.deactivateEffect();
         }
     }
 

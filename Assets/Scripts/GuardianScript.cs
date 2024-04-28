@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.AI;
 public class GuardianScript : MonoBehaviour
@@ -11,7 +12,7 @@ public class GuardianScript : MonoBehaviour
         {
         new Vector3(9.5f, 0.21f, 11.84f),
         new Vector3(14.68f, 0.21f, 6.86f),
-        new Vector3(0.06f, 0.21f, -4.4f),
+        //new Vector3(0.06f, 0.21f, -4.4f),
         new Vector3(6.55f, 0.21f, -13.05f),
         new Vector3(11.34f, 0.21f, -4.34f),
         new Vector3(13.11f, 0.21f, -13.05f)
@@ -43,6 +44,8 @@ public class GuardianScript : MonoBehaviour
     private Vector3[] recorridoActual;
     private int indiceDestinoActual = 0;
     RaycastHit hit;
+
+    public float viewAngle = 180f; 
 
     void Start()
     {
@@ -92,19 +95,46 @@ public class GuardianScript : MonoBehaviour
 
         }
    
-        float SightRange = 100f;
+        float SightRange = 200f;
+        int numRays = 10;
+        float angleBetweenRays = viewAngle / numRays;
+
+        for(int i = 0; i < numRays; i++)
+        {
+            float rayAngle = -viewAngle / 2 + angleBetweenRays * i;
+            Vector3 rayDirection = Quaternion.Euler(0, rayAngle, 0) * transform.forward;
+
+            if(Physics.Raycast(agenteNavMesh.transform.position, rayDirection, out hit, SightRange))
+            {
+                if (hit.transform.gameObject.CompareTag("JUGADOR"))
+                {
+                    agenteNavMesh.SetDestination(hit.transform.position);
+                    following = true;
+                    agenteNavMesh.speed = 7f;
+                    agenteNavMesh.acceleration = 70f;
+                    break;
+                }
+            }
+        }
         
-        if(Physics.BoxCast(agenteNavMesh.transform.position, agenteNavMesh.transform.localScale*2f, agenteNavMesh.transform.forward, out hit, agenteNavMesh.transform.rotation, SightRange))
+        /*if(Physics.BoxCast(agenteNavMesh.transform.position, agenteNavMesh.transform.localScale*2f, agenteNavMesh.transform.forward, out hit, agenteNavMesh.transform.rotation, SightRange))
         {
             if (hit.transform.gameObject.CompareTag("JUGADOR"))
             {
                 //print("YA TE VI PERRO");
-                agenteNavMesh.SetDestination(hit.transform.position);
-                following = true;
-                agenteNavMesh.speed = 7f;
-                agenteNavMesh.acceleration = 70f;
+                Vector3 directionToPlayer = player.transform.position - transform.position;
+                float angle = Vector3.Angle(transform.forward, directionToPlayer);
+
+                if(angle < viewAngle / 2)
+                {
+                    agenteNavMesh.SetDestination(hit.transform.position);
+                    following = true;
+                    agenteNavMesh.speed = 7f;
+                    agenteNavMesh.acceleration = 70f;
+                    break;
+                }
             }
-        }
+        }*/
     }
 
     void OnDrawGizmos()
