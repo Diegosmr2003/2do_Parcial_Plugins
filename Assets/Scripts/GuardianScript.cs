@@ -10,9 +10,9 @@ public class GuardianScript : MonoBehaviour
     {
         new Vector3[]
         {
-        new Vector3(9.5f, 0.21f, 11.84f),
+        new Vector3(5.53f, 0.21f, 1.76f),
         new Vector3(14.68f, 0.21f, 6.86f),
-        //new Vector3(0.06f, 0.21f, -4.4f),
+        new Vector3(0.06f, 0.21f, -4.4f),
         new Vector3(6.55f, 0.21f, -13.05f),
         new Vector3(11.34f, 0.21f, -4.34f),
         new Vector3(13.11f, 0.21f, -13.05f)
