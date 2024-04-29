@@ -38,27 +38,30 @@ public class GuardianScript : MonoBehaviour
         new Vector3(74f, 0.21f, -5.3f)
         }
     };
-    public bool following = false;
-    public GameObject player;
-    private NavMeshAgent agenteNavMesh;
-    private Vector3[] recorridoActual;
-    private int indiceDestinoActual = 0;
-    RaycastHit hit;
 
-    public float viewAngle = 180f; 
+
+
+    public bool following = false; //Indica si se está sigueindo al jugador
+    public GameObject player; // Referencia al jugador
+    private NavMeshAgent agenteNavMesh; //Referencia a objeto con NavMesh
+    private Vector3[] recorridoActual;  // Recorridio que el guardian está siguiendo
+    private int indiceDestinoActual = 0;
+    RaycastHit hit; 
+
+    public float viewAngle = 180f; //Angulo de vision del guardian
 
     void Start()
     {
-        agenteNavMesh = GetComponent<NavMeshAgent>();
-        int indiceRecorrido = UnityEngine.Random.Range(0, recorridos.Length);
-        recorridoActual = recorridos[indiceRecorrido];
+        agenteNavMesh = GetComponent<NavMeshAgent>(); //Inicializa el NavMesh
+        int indiceRecorrido = UnityEngine.Random.Range(0, recorridos.Length); //Se elije aleatoriamente un recorrido de los tres posibles
+        recorridoActual = recorridos[indiceRecorrido]; //Se elije aleatoriamente el recorrido
 
-        int indicePosicionInicial = UnityEngine.Random.Range(0, recorridoActual.Length);
-        transform.position = recorridoActual[indicePosicionInicial];
+        int indicePosicionInicial = UnityEngine.Random.Range(0, recorridoActual.Length); //Elije la posicion aleatoriamente entre las diferentes posiciones del recorrido
+        transform.position = recorridoActual[indicePosicionInicial]; //Coloca al guardian en la posicion inicial
 
         if (recorridoActual.Length > 0)
         {
-            agenteNavMesh.SetDestination(recorridoActual[indicePosicionInicial]);
+            agenteNavMesh.SetDestination(recorridoActual[indicePosicionInicial]); //Prime rdestino al cual va el guardian
         }
     }
 
@@ -72,10 +75,11 @@ public class GuardianScript : MonoBehaviour
         Chase();
     }
 
-    void SiguienteDestino()
+    void SiguienteDestino() // Si ha alcanzado el destino actual, elige el siguiente
     {
         // Selecciona aleatoriamente el próximo destino
         int nuevoIndice = UnityEngine.Random.Range(0, recorridoActual.Length);
+
         // Asegura que el nuevo índice no sea el mismo que el actual
         while (nuevoIndice == indiceDestinoActual)
         {
@@ -89,11 +93,7 @@ public class GuardianScript : MonoBehaviour
     void Chase()
     {
         agenteNavMesh.speed = 2f;
-        
-        if (following == true) {
-            //agenteNavMesh.SetDestination(player.transform.position);
 
-        }
    
         float SightRange = 200f;
         int numRays = 10;
@@ -101,13 +101,16 @@ public class GuardianScript : MonoBehaviour
 
         for(int i = 0; i < numRays; i++)
         {
-            float rayAngle = -viewAngle / 2 + angleBetweenRays * i;
-            Vector3 rayDirection = Quaternion.Euler(0, rayAngle, 0) * transform.forward;
+            float rayAngle = -viewAngle / 2 + angleBetweenRays * i; // Ángulo del rayo
+            Vector3 rayDirection = Quaternion.Euler(0, rayAngle, 0) * transform.forward; // Dirección del rayo
 
-            if(Physics.Raycast(agenteNavMesh.transform.position, rayDirection, out hit, SightRange))
+            // Si el rayo golpea algo
+            if (Physics.Raycast(agenteNavMesh.transform.position, rayDirection, out hit, SightRange))
             {
+                //Si se golpea a un objeto con el tag de "JUGADOR"
                 if (hit.transform.gameObject.CompareTag("JUGADOR"))
                 {
+                    // Establece el destino como la posición del jugador y aumenta la velocidad y aceleración
                     agenteNavMesh.SetDestination(hit.transform.position);
                     following = true;
                     agenteNavMesh.speed = 7f;
@@ -117,24 +120,6 @@ public class GuardianScript : MonoBehaviour
             }
         }
         
-        /*if(Physics.BoxCast(agenteNavMesh.transform.position, agenteNavMesh.transform.localScale*2f, agenteNavMesh.transform.forward, out hit, agenteNavMesh.transform.rotation, SightRange))
-        {
-            if (hit.transform.gameObject.CompareTag("JUGADOR"))
-            {
-                //print("YA TE VI PERRO");
-                Vector3 directionToPlayer = player.transform.position - transform.position;
-                float angle = Vector3.Angle(transform.forward, directionToPlayer);
-
-                if(angle < viewAngle / 2)
-                {
-                    agenteNavMesh.SetDestination(hit.transform.position);
-                    following = true;
-                    agenteNavMesh.speed = 7f;
-                    agenteNavMesh.acceleration = 70f;
-                    break;
-                }
-            }
-        }*/
     }
 
     void OnDrawGizmos()
