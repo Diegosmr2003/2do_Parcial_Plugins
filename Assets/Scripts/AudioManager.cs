@@ -2,6 +2,7 @@ using UnityEngine;
 
 public class AudioManager : MonoBehaviour
 {
+    //Declaramos dos parámetros de tipo SerializeField para poner los audiosource de la música y los efectos de sonido
     [Header("------------Audio Source-------------")]
     [SerializeField] AudioSource musicSource;
     [SerializeField] AudioSource sfxSource;
@@ -9,8 +10,8 @@ public class AudioManager : MonoBehaviour
 
     [Header("------------Audio Clip-------------")]
     //public AudioClip background;
-    public AudioClip gunshoot;
-    public AudioClip gunnoammo;
+    public AudioClip gunshoot; //Pistola dispara
+    public AudioClip gunnoammo; //Pistola sin balas
     //public AudioClip chase;
     //public AudioClip nearguardian;
 
@@ -21,9 +22,10 @@ public class AudioManager : MonoBehaviour
       
     }*/
 
+   
     public void playSFX(AudioClip clip) //Este método es público para que se pueda acceder a él mediante otros scripts
     {
-        sfxSource.PlayOneShot(clip);
+        sfxSource.PlayOneShot(clip); //Le da play al clip puesto como parámetro en la función
     }
 
     public void stopSFX()

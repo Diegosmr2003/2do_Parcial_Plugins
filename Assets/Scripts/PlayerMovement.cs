@@ -5,14 +5,14 @@ using UnityEngine;
 public class PlayerMovement : MonoBehaviour
 {
     [Header("Movement")]
-    public float moveSpeed;
+    public float moveSpeed; //Velocidad de movimiento
 
-    public float groundDrag;
+    public float groundDrag; //Parametro para evitar que nos deslicemos mucho en el suelo para hacerlo mas realista
 
-    [Header("Ground Check")] //Check if player is on the ground to apply drag (less slippery movement)
-    public float playerHeight;
-    public LayerMask whatIsGround;
-    bool grounded;
+    [Header("Ground Check")] //Verificar si el jugador está en el suelo para aplicar arrastre (movimiento menos resbaladizo)
+    public float playerHeight; //Altura de jugador
+    public LayerMask whatIsGround; //La layer para verificar cual será el suelo
+    bool grounded; //Booleano que marcará cuando el jugador esté en el suelo
 
     public Transform orientation;
 
@@ -29,13 +29,13 @@ public class PlayerMovement : MonoBehaviour
 
     private void Awake()
     {
-        audioManager = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioManager>();
+        audioManager = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioManager>(); //Obtenemos los componentes de audio de nuestro audioManager
     }
 
     private void Start()
     {
-        rb = GetComponent<Rigidbody>();
-        rb.freezeRotation = true;
+        rb = GetComponent<Rigidbody>(); //Obtenemos el rigidbody
+        rb.freezeRotation = true; //Congelamos su rotacion
     }
 
     private void Update()
@@ -53,43 +53,43 @@ public class PlayerMovement : MonoBehaviour
             rb.drag = 0;
     }
 
-    private void FixedUpdate()
+    private void FixedUpdate() //Este es lo mismo que el update pero más enfocado en el framerate y en las físicas
     {
-        MovePlayer();
+        MovePlayer(); //Movemos al jugador
         
     }
 
     private void MyInput()
     {
-        horizontalInput = Input.GetAxisRaw("Horizontal");
-        verticalInput = Input.GetAxisRaw("Vertical");
+        horizontalInput = Input.GetAxisRaw("Horizontal"); //Mover al personaje en horizontal
+        verticalInput = Input.GetAxisRaw("Vertical"); //Mover al personaje en vertical
     }
 
     public void MovePlayer()
     {
         //calculate movement direction
-        moveDirection = orientation.forward * verticalInput + orientation.right * horizontalInput; //Walk in the direction youre looking
-        rb.AddForce(moveDirection.normalized * moveSpeed *10f, ForceMode.Force);
+        moveDirection = orientation.forward * verticalInput + orientation.right * horizontalInput; //Moverte en la direccion que estás viendo
+        rb.AddForce(moveDirection.normalized * moveSpeed *10f, ForceMode.Force); //Le damos velocidad al jugador
         
 
 
         if (Input.GetKey(KeyCode.LeftShift))
         {
-            rb.AddForce(moveDirection.normalized * (moveSpeed*7f) * 10f, ForceMode.Force);
+            rb.AddForce(moveDirection.normalized * (moveSpeed*7f) * 10f, ForceMode.Force); //Aumentamos la velocidad al jugador al correr
         }
   
     }
     
-    private void SpeedControl()
+    private void SpeedControl() //Funcion para limitar la velocidad y evitar que el jugador vaya más rapido de como lo esperabamos
     {
         Vector3 flatVel = new Vector3(rb.velocity.x, 0f, rb.velocity.z);
 
-        //limit velocity if needed
+        //Limitar la velocidad
 
-        if(flatVel.magnitude > moveSpeed) //if you go higher than your movement speed
+        if(flatVel.magnitude > moveSpeed) //Si vas a velocidad que tu velocida normal
         {
-            Vector3 limitedVel = flatVel.normalized * moveSpeed; //calculate what max velocity would be
-            rb.velocity = new Vector3(limitedVel.x, rb.velocity.y, limitedVel.z); //apply it
+            Vector3 limitedVel = flatVel.normalized * moveSpeed; //Calcula cual sería la velocidad maxima
+            rb.velocity = new Vector3(limitedVel.x, rb.velocity.y, limitedVel.z); //Y la aplicamos
         }
     }
     
