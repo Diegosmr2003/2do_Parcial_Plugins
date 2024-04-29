@@ -21,7 +21,7 @@ public class PlayerCam : MonoBehaviour
 
     private void Update()
     {
-        //get mouse input
+        //Obtener el input del mouse
         float mouseX = Input.GetAxisRaw("Mouse X") * Time.deltaTime * sensX;
         float mouseY = Input.GetAxisRaw("Mouse Y") * Time.deltaTime * sensY;
 
@@ -29,11 +29,11 @@ public class PlayerCam : MonoBehaviour
 
         xRotation -= mouseY;
 
-        //****This is just the way Unity handles rotations and inputs, this is the correct way to do it***
+        //****Esta es simplemente la forma en que Unity maneja las rotaciones y los inputs, esta es la forma correcta de hacerlo***
 
         xRotation = Mathf.Clamp(xRotation, -90f, 90f); //Evitar que la camara de jugador vea mas hacia arriba o mas hacia abajo
 
-        //rotate cam and orientation
+        //Rotamos la camara y obtenemos la orientacion
         transform.rotation = Quaternion.Euler(xRotation, yRotation, 0); //Este es para que la camara se mueva en x y en y
         orientation.rotation = Quaternion.Euler(0, yRotation,0); //Este es para que SOLO el jugador se mueva en y cuando se mueva la camara 
     }
