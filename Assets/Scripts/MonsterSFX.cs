@@ -4,35 +4,35 @@ using UnityEngine;
 
 public class MonsterSFX : MonoBehaviour
 {
-    public Transform player; // Referencia al jugador 
-    public AudioClip backgroundMusic; // Música de fondo
-    public AudioClip approachMusic;
-    public AudioClip chaseMusic;
+    public Transform player;    // Referencia al jugador.
+    public AudioClip backgroundMusic;    // Música de fondo.
+    public AudioClip approachMusic;    // Música cuando el monstruo se acerca al jugador. 
+    public AudioClip chaseMusic;    // Música cuando el monstruo detecta y persigue al jugador.
 
-    private AudioSource audioSource;
+    private AudioSource audioSource;    // Fuente de audio para reproducir la música.
 
-    GuardianScript persecucion;
+    GuardianScript persecucion;    // Script del guardián que controla la persecución.
 
-    GameObject availableGuardians;
+    GameObject availableGuardians;    // Objeto que contiene a los guardianes disponibles.
 
-    CameraChange cameraFx;
+    CameraChange cameraFx;    // Efectos de cámara.
 
-    private bool detected;
+    private bool detected;     // Variable para controlar si el jugador ha sido detectado.
 
     private void Start()
     {
-        audioSource = GetComponent<AudioSource>();
-        persecucion = GetComponent<GuardianScript>();
-        audioSource.clip = backgroundMusic;
-        audioSource.Play();
-        StartCoroutine(CheckPlayerDistance());
-        availableGuardians = GameObject.Find("GuardianBox");
+        audioSource = GetComponent<AudioSource>();    // Obtiene el componente AudioSource del objeto de juego.
+        persecucion = GetComponent<GuardianScript>();    // Obtiene el componente GuardianScript del objeto de juego.
+        audioSource.clip = backgroundMusic;    // Asigna la música de fondo al AudioSource.
+        audioSource.Play();    // Comienza a reproducir la música de fondo.
+        StartCoroutine(CheckPlayerDistance());    // Inicia una coroutina para comprobar la distancia al jugador.
+        availableGuardians = GameObject.Find("GuardianBox");    // Busca el objeto de juego con el nombre "GuardianBox".
 
-        cameraFx = GetComponent<CameraChange>();
+        cameraFx = GetComponent<CameraChange>();    // Obtiene el componente CameraChange del objeto de juego.
 
-        detected = false;
+        detected = false;    // Inicializa detected a false.
 
-        cameraFx.deactivateEffect();
+        cameraFx.deactivateEffect();    // Desactiva los efectos de cámara.
 
     }
 
@@ -40,57 +40,55 @@ public class MonsterSFX : MonoBehaviour
     {
         while (true)
         {
-            float distanceToPlayer = Vector3.Distance(transform.position, player.position);
-
-            if (distanceToPlayer < 12f && distanceToPlayer > 1f && !persecucion.following)
+            float distanceToPlayer = Vector3.Distance(transform.position, player.position);    // Calcula la distancia al jugador.
+            if (distanceToPlayer < 12f && distanceToPlayer > 1f && !persecucion.following)    // Si el jugador está a una distancia entre 1 y 12 unidades y el monstruo no está persiguiendo al jugador.
             {
-                ChangeMusic(approachMusic);
+                ChangeMusic(approachMusic);    // Cambia la música a la música de aproximación.
             }
-            else if (distanceToPlayer >= 12f)
+            else if (distanceToPlayer >= 12f)    // Si el jugador está a una distancia mayor o igual a 12 unidades.
             {
-                
-                ChangeMusic(backgroundMusic);
+                ChangeMusic(backgroundMusic);    // Cambia la música a la música de fondo.
             }
-            else if (persecucion.following)
+            else if (persecucion.following)    // Si el monstruo está siguiendo al jugador.
             {
                 persecucion.following = false;
-                ChangeMusic(chaseMusic);
+                ChangeMusic(chaseMusic);    // Cambia la música a la música de persecución.
             }
             yield return new WaitForSeconds(1f); // Comprueba la distancia cada segundo 
         }
     }
 
-    void ChangeMusic(AudioClip newClip)
+    void ChangeMusic(AudioClip newClip)    // Método para cambiar la música.
     {
-        if (audioSource.clip != newClip)
+        if (audioSource.clip != newClip)    // Si la música actual es diferente de la nueva música.
         {
-            audioSource.Stop();
-            audioSource.clip = newClip;
-            audioSource.Play();
+            audioSource.Stop();    // Detiene la música actual.
+            audioSource.clip = newClip;    // Asigna la nueva música al AudioSource.
+            audioSource.Play();    // Comienza a reproducir la nueva música.
         }
     }
 
     private void Update()
     {
-        if (Vector3.Distance(transform.position, player.position) < 12f && Vector3.Distance(transform.position, player.position) > 1f)
+        if (Vector3.Distance(transform.position, player.position) < 12f && Vector3.Distance(transform.position, player.position) > 1f)    // Si el jugador está a una distancia entre 1 y 12 unidades.
         {
-            detected = true;
-            print("Efecto activado");
-            cameraFx.activateEffect();
+            detected = true; // Marca que el jugador ha sido detectado.
+            print("Efecto activado"); // Imprime un mensaje en la consola.
+            cameraFx.activateEffect(); // Activa los efectos de cámara.
         }
-        else if (detected)
+        else if (detected)    // Si el jugador ha sido detectado.
         {
-            print("Efecto desactivado");
-            detected = false;
-            cameraFx.deactivateEffect();
+            print("Efecto desactivado"); // Imprime un mensaje en la consola.
+            detected = false; // Marca que el jugador ya no está detectado.
+            cameraFx.deactivateEffect(); // Desactiva los efectos de cámara.
         }
     }
 
-    private void OnDestroy()
+    private void OnDestroy()    // Método que se llama cuando el objeto de juego es destruido.
     {
-        if (cameraFx != null)
+        if (cameraFx != null)    // Si hay un componente CameraChange.
         {
-            cameraFx.deactivateEffect();
+            cameraFx.deactivateEffect();    // Desactiva los efectos de cámara.
         }
     }
 
