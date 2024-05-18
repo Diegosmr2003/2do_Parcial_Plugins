@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Bullet : MonoBehaviour
 {
+
     private void OnTriggerEnter(Collider other) //Este es ontriggerenter porque el guardian tiene un isTrigger
     {
 
@@ -11,6 +12,7 @@ public class Bullet : MonoBehaviour
         {
             Destroy(other.gameObject); //Destruye al guardian
             Destroy(gameObject); //Y asi mismo destruye a la bala
+            Score.contador += 100; // Se suman 10 puntos al contador del marcador. 
         }
 
     }

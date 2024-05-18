@@ -5,7 +5,6 @@ using UnityEngine.SceneManagement;
 
 public class Colisiones : MonoBehaviour
 {
-
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.name == "WinDoor") //Si el otro gameobject con el que colisiona es la puerta de salida...

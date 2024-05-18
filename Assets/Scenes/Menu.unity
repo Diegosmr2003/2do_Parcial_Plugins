@@ -551,7 +551,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "By \nAndrez Lopez          Diego Montoya         Jorge Cardenas"
+  m_text: "By \nAndres Lopez          Diego Montoya         Jorge Cardenas"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 01483dafa7af56d44aa90f94fe8c48a9, type: 2}
   m_sharedMaterial: {fileID: -8540313021572815871, guid: 01483dafa7af56d44aa90f94fe8c48a9, type: 2}

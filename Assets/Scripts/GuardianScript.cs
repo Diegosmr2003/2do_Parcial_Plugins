@@ -113,8 +113,8 @@ public class GuardianScript : MonoBehaviour
                     // Establece el destino como la posición del jugador y aumenta la velocidad y aceleración
                     agenteNavMesh.SetDestination(hit.transform.position);
                     following = true;
-                    agenteNavMesh.speed = 7f;
-                    agenteNavMesh.acceleration = 70f;
+                    agenteNavMesh.speed = 4f;
+                    agenteNavMesh.acceleration = 10f;
                     break;
                 }
             }
