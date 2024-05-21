@@ -19,6 +19,7 @@ public class Colisiones : MonoBehaviour
             SceneManager.LoadScene(3); //Carga la escena del gameover
             Cursor.lockState = CursorLockMode.None; //Desactiva la función que hace que el cursor se quede centrado en la pantalla
             Cursor.visible = true; //Hace al cursor visible
+            Score.contador = 0;
         }
 
     }
