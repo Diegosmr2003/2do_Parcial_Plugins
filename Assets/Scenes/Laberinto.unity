@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028334, g: 0.2257134, b: 0.30692226, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1121,13 +1121,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 174023660}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: -0.7071068, z: 0, w: 0.7071068}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 41158263}
-  m_LocalEulerAnglesHint: {x: 0, y: -90, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &179764471
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1887,9 +1887,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 41158263}
-  backgroundMusic: {fileID: 8300000, guid: ec31e5222e743f9499f21e6b545405b0, type: 3}
-  approachMusic: {fileID: 8300000, guid: 52206da9d8cd1c845a1a81ac359918ac, type: 3}
-  chaseMusic: {fileID: 8300000, guid: 01e74a1cd6ba9724ebe9c3c2beb98769, type: 3}
+  mute: {fileID: 8300000, guid: ec31e5222e743f9499f21e6b545405b0, type: 3}
+  approachMusic: {fileID: 8300000, guid: c9cc282ca78e6ae4e928c42399874e3f, type: 3}
+  chaseMusic: {fileID: 8300000, guid: b618f2e0fb44b124db88bbad9760a836, type: 3}
 --- !u!114 &288245430
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3053,6 +3053,7 @@ GameObject:
   - component: {fileID: 480570890}
   - component: {fileID: 480570889}
   - component: {fileID: 480570888}
+  - component: {fileID: 480570891}
   m_Layer: 7
   m_Name: PlayerCam
   m_TagString: MainCamera
@@ -3073,8 +3074,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 139674906}
-  - {fileID: 704945375}
+  - {fileID: 1288211517}
   m_Father: {fileID: 1975815241}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &480570885
@@ -3094,6 +3094,7 @@ MonoBehaviour:
   orientation: {fileID: 174023661}
   xRotation: 0
   yRotation: 0
+  cam1: {fileID: 1909574379}
 --- !u!81 &480570886
 AudioListener:
   m_ObjectHideFlags: 0
@@ -3247,6 +3248,18 @@ MonoBehaviour:
   brightness: 0
   effectType: 0
   styleStrength: 1
+--- !u!114 &480570891
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 480570883}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5ec2fb7b88ab1c546a8491d7addfa467, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &480763811 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4609739497469218577, guid: 7be60ead6927f8947b65624007c6e4b1, type: 3}
@@ -3821,7 +3834,7 @@ PrefabInstance:
   serializedVersion: 2
   m_Modification:
     serializedVersion: 3
-    m_TransformParent: {fileID: 480570884}
+    m_TransformParent: {fileID: 1288211517}
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: c4e9dbf42a285be4f99487c8faf33e1c, type: 3}
       propertyPath: m_LocalScale.x
@@ -4762,37 +4775,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4609739497469218577, guid: 7be60ead6927f8947b65624007c6e4b1, type: 3}
   m_PrefabInstance: {fileID: 1762645513}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &704945374
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 704945375}
-  m_Layer: 7
-  m_Name: test
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &704945375
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 704945374}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.3210002, y: -0.249, z: 0.533}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 480570884}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &708608550
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6958,6 +6940,7 @@ MonoBehaviour:
   orientation: {fileID: 174023661}
   xRotation: 0
   yRotation: 0
+  cam1: {fileID: 480570883}
 --- !u!1 &1068424697
 GameObject:
   m_ObjectHideFlags: 0
@@ -7113,9 +7096,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 41158263}
-  backgroundMusic: {fileID: 8300000, guid: ec31e5222e743f9499f21e6b545405b0, type: 3}
-  approachMusic: {fileID: 8300000, guid: 52206da9d8cd1c845a1a81ac359918ac, type: 3}
-  chaseMusic: {fileID: 8300000, guid: 01e74a1cd6ba9724ebe9c3c2beb98769, type: 3}
+  mute: {fileID: 8300000, guid: ec31e5222e743f9499f21e6b545405b0, type: 3}
+  approachMusic: {fileID: 8300000, guid: c9cc282ca78e6ae4e928c42399874e3f, type: 3}
+  chaseMusic: {fileID: 8300000, guid: b618f2e0fb44b124db88bbad9760a836, type: 3}
 --- !u!114 &1068424701
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7977,9 +7960,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 41158263}
-  backgroundMusic: {fileID: 8300000, guid: ec31e5222e743f9499f21e6b545405b0, type: 3}
-  approachMusic: {fileID: 8300000, guid: 52206da9d8cd1c845a1a81ac359918ac, type: 3}
-  chaseMusic: {fileID: 8300000, guid: 01e74a1cd6ba9724ebe9c3c2beb98769, type: 3}
+  mute: {fileID: 8300000, guid: ec31e5222e743f9499f21e6b545405b0, type: 3}
+  approachMusic: {fileID: 8300000, guid: c9cc282ca78e6ae4e928c42399874e3f, type: 3}
+  chaseMusic: {fileID: 8300000, guid: b618f2e0fb44b124db88bbad9760a836, type: 3}
 --- !u!114 &1195515635
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8433,7 +8416,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cam1: {fileID: 480570883}
   cam2: {fileID: 1909574379}
-  gun: {fileID: 530923310}
+  gun: {fileID: 1288211516}
 --- !u!4 &1285252861
 Transform:
   m_ObjectHideFlags: 0
@@ -8448,6 +8431,38 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1288211516
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1288211517}
+  m_Layer: 7
+  m_Name: Pistola
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1288211517
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1288211516}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 139674906}
+  m_Father: {fileID: 480570884}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &1292780894 stripped
 Transform:
@@ -12064,13 +12079,14 @@ GameObject:
   - component: {fileID: 1909574385}
   - component: {fileID: 1909574384}
   - component: {fileID: 1909574383}
+  - component: {fileID: 1909574386}
   m_Layer: 0
   m_Name: PlayerCam2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!81 &1909574380
 AudioListener:
   m_ObjectHideFlags: 0
@@ -12239,6 +12255,18 @@ MonoBehaviour:
   brightness: 0
   effectType: 0
   styleStrength: 1
+--- !u!114 &1909574386
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1909574379}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5ec2fb7b88ab1c546a8491d7addfa467, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1915524151
 PrefabInstance:
   m_ObjectHideFlags: 0

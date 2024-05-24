@@ -11,9 +11,13 @@ public class PlayerCam : MonoBehaviour
 
     public float xRotation; //Rotation for x and y
     public float yRotation;
+    public GameObject cam1;
+    Quaternion newRotation;
 
     private void Start()
     {
+        newRotation = cam1.GetComponent<SetRotationCam>().getRotation();
+        transform.rotation = newRotation;
         Cursor.lockState = CursorLockMode.Locked; //Cursor locked in the middle
         Cursor.visible = false; //Invisible
 
