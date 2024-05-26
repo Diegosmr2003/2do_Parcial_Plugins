@@ -12,15 +12,11 @@ public class PlayerCam : MonoBehaviour
     public float xRotation; //Rotation for x and y
     public float yRotation;
     public GameObject cam1;
-    Quaternion newRotation;
 
     private void Start()
     {
-        newRotation = cam1.GetComponent<SetRotationCam>().getRotation();
-        transform.rotation = newRotation;
         Cursor.lockState = CursorLockMode.Locked; //Cursor locked in the middle
         Cursor.visible = false; //Invisible
-
     }
 
     private void Update()
@@ -30,15 +26,21 @@ public class PlayerCam : MonoBehaviour
         float mouseY = Input.GetAxisRaw("Mouse Y") * Time.deltaTime * sensY;
 
         yRotation += mouseX;
-
         xRotation -= mouseY;
 
-        //****Esta es simplemente la forma en que Unity maneja las rotaciones y los inputs, esta es la forma correcta de hacerlo***
+        // Evitar que la cámara de jugador vea más hacia arriba o más hacia abajo
+        xRotation = Mathf.Clamp(xRotation, 0, 20f);
 
-        xRotation = Mathf.Clamp(xRotation, -90f, 90f); //Evitar que la camara de jugador vea mas hacia arriba o mas hacia abajo
+        // Rotamos la cámara y obtenemos la orientación
+        transform.rotation = Quaternion.Euler(xRotation, yRotation, 0);
+        orientation.rotation = Quaternion.Euler(0, yRotation, 0);
+    }
 
-        //Rotamos la camara y obtenemos la orientacion
-        transform.rotation = Quaternion.Euler(xRotation, yRotation, 0); //Este es para que la camara se mueva en x y en y
-        orientation.rotation = Quaternion.Euler(0, yRotation,0); //Este es para que SOLO el jugador se mueva en y cuando se mueva la camara 
+    public void SetRotation(Quaternion rotation)
+    {
+        transform.rotation = rotation;
+        Vector3 eulerRotation = rotation.eulerAngles;
+        xRotation = eulerRotation.x;
+        yRotation = eulerRotation.y;
     }
 }
