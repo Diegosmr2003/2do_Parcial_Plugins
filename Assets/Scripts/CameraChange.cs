@@ -2,38 +2,66 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CameraChange : MonoBehaviour //Este codigo es exclusivamente para el cambio del efecto de camara
+public class CameraChange : MonoBehaviour
 {
-    public GameObject mainCamera1; //Declaramos un gameobject que será la cámara del jugador
+    public GameObject mainCamera1; // Declaramos un gameobject que será la cámara del jugador
     public GameObject mainCamera2;
+
+    private Effects effects1; // Componente Effects de la cámara 1
+    private Effects effects2; // Componente Effects de la cámara 2
 
     void Start()
     {
-        mainCamera1.GetComponent<Effects>(); //Obtenemos el componente de "effects", que es el que venia con Effects Pro que descargamos en clase una vez
-        mainCamera2.GetComponent<Effects>();
+        if (mainCamera1 != null)
+        {
+            effects1 = mainCamera1.GetComponent<Effects>();
+            if (effects1 != null)
+            {
+                effects1.enabled = false; // Desactiva el efecto al inicio
+            }
+        }
+        else
+        {
+            Debug.LogError("mainCamera1 is not assigned.");
+        }
+
+        if (mainCamera2 != null)
+        {
+            effects2 = mainCamera2.GetComponent<Effects>();
+            if (effects2 != null)
+            {
+                effects2.enabled = false; // Desactiva el efecto al inicio
+            }
+        }
+        else
+        {
+            Debug.LogError("mainCamera2 is not assigned.");
+        }
     }
 
-    public void activateEffect() //Hacemos una función que active el efecto
+    public void activateEffect() // Hacemos una función que active el efecto
     {
-        if (mainCamera1.GetComponent<Effects>().enabled != true){ //Si no está activado previamente
-            mainCamera1.GetComponent<Effects>().enabled = true; //Lo activa
+        if (effects1 != null && !effects1.enabled)
+        {
+            effects1.enabled = true; // Lo activa
         }
 
-        if (mainCamera2.GetComponent<Effects>().enabled != true)
-        { 
-            mainCamera2.GetComponent<Effects>().enabled = true; //Lo activa
+        if (effects2 != null && !effects2.enabled)
+        {
+            effects2.enabled = true; // Lo activa
         }
     }
 
-    public void deactivateEffect() //Hacemos una función que desactive el efecto
+    public void deactivateEffect() // Hacemos una función que desactive el efecto
     {
-        if (mainCamera1.GetComponent<Effects>().enabled != false){ //Si no está desactivado previamente
-            mainCamera1.GetComponent<Effects>().enabled = false; //Lo desactiva
+        if (effects1 != null && effects1.enabled)
+        {
+            effects1.enabled = false; // Lo desactiva
         }
 
-        if (mainCamera2.GetComponent<Effects>().enabled != false)
-        { 
-            mainCamera2.GetComponent<Effects>().enabled = false; //Lo desactiva
+        if (effects2 != null && effects2.enabled)
+        {
+            effects2.enabled = false; // Lo desactiva
         }
     }
 }

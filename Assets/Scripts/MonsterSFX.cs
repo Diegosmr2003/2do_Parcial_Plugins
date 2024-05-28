@@ -10,12 +10,9 @@ public class MonsterSFX : MonoBehaviour
     public AudioClip chaseMusic;    // Música cuando el monstruo detecta y persigue al jugador.
 
     private AudioSource audioSource;    // Fuente de audio para reproducir la música.
-
-    GuardianScript persecucion;    // Script del guardián que controla la persecución.
-
-    GameObject availableGuardians;    // Objeto que contiene a los guardianes disponibles.
-
-    CameraChange cameraFx;    // Efectos de cámara.
+    private GuardianScript persecucion;    // Script del guardián que controla la persecución.
+    private GameObject availableGuardians;    // Objeto que contiene a los guardianes disponibles.
+    private CameraChange cameraFx;    // Efectos de cámara.
 
     private bool detected;     // Variable para controlar si el jugador ha sido detectado.
 
@@ -28,37 +25,40 @@ public class MonsterSFX : MonoBehaviour
         availableGuardians = GameObject.Find("GuardianBox");    // Busca el objeto de juego con el nombre "GuardianBox".
 
         cameraFx = GetComponent<CameraChange>();    // Obtiene el componente CameraChange del objeto de juego.
+        if (cameraFx == null)
+        {
+            Debug.LogError("CameraChange component not found on this GameObject.");
+        }
 
         detected = false;    // Inicializa detected a false.
 
-        cameraFx.deactivateEffect();    // Desactiva los efectos de cámara.
-
+        if (cameraFx != null)
+        {
+            cameraFx.deactivateEffect();    // Desactiva los efectos de cámara.
+        }
     }
-    
+
     IEnumerator CheckPlayerDistance()
     {
-       float distanceToPlayer = Vector3.Distance(transform.position, player.position);    // Calcula la distancia al jugador.
+        float distanceToPlayer = Vector3.Distance(transform.position, player.position);    // Calcula la distancia al jugador.
 
-       if (distanceToPlayer < 12f && distanceToPlayer > 1f && !persecucion.following)    // Si el jugador está a una distancia entre 1 y 12 unidades y el monstruo no está persiguiendo al jugador.
-       {
+        if (distanceToPlayer < 12f && distanceToPlayer > 1f && !persecucion.following)    // Si el jugador está a una distancia entre 1 y 12 unidades y el monstruo no está persiguiendo al jugador.
+        {
             ChangeMusic(approachMusic);    // Cambia la música a la música de aproximación.
-       }
-
-       else if (distanceToPlayer >= 12f)    // Si el jugador está a una distancia mayor o igual a 12 unidades.
-       {
+        }
+        else if (distanceToPlayer >= 12f)    // Si el jugador está a una distancia mayor o igual a 12 unidades.
+        {
             ChangeMusic(mute);    // Cambia la música a la música de fondo.
-       }
-
-       else if (persecucion.following)    // Si el monstruo está siguiendo al jugador.
-       {
+        }
+        else if (persecucion.following)    // Si el monstruo está siguiendo al jugador.
+        {
             persecucion.following = false;
             ChangeMusic(chaseMusic);    // Cambia la música a la música de persecución.
-       }
+        }
 
-        //yield return new WaitForSeconds(1f); // Comprueba la distancia cada segundo 
         yield return null;
     }
-    
+
     void ChangeMusic(AudioClip newClip)    // Método para cambiar la música.
     {
         if (audioSource.clip != newClip)    // Si la música actual es diferente de la nueva música.
@@ -68,7 +68,7 @@ public class MonsterSFX : MonoBehaviour
             audioSource.Play();    // Comienza a reproducir la nueva música.
         }
     }
-    
+
     private void Update()
     {
         StartCoroutine(CheckPlayerDistance());    // Inicia una coroutina para comprobar la distancia al jugador.
@@ -76,16 +76,22 @@ public class MonsterSFX : MonoBehaviour
         {
             detected = true; // Marca que el jugador ha sido detectado.
             print("Efecto activado"); // Imprime un mensaje en la consola.
-            cameraFx.activateEffect(); // Activa los efectos de cámara.
+            if (cameraFx != null)
+            {
+                cameraFx.activateEffect(); // Activa los efectos de cámara.
+            }
         }
         else if (detected)    // Si el jugador ha sido detectado.
         {
             print("Efecto desactivado"); // Imprime un mensaje en la consola.
             detected = false; // Marca que el jugador ya no está detectado.
-            cameraFx.deactivateEffect(); // Desactiva los efectos de cámara.
+            if (cameraFx != null)
+            {
+                cameraFx.deactivateEffect(); // Desactiva los efectos de cámara.
+            }
         }
     }
-    
+
     private void OnDestroy()    // Método que se llama cuando el objeto de juego es destruido.
     {
         if (cameraFx != null)    // Si hay un componente CameraChange.
@@ -93,5 +99,4 @@ public class MonsterSFX : MonoBehaviour
             cameraFx.deactivateEffect();    // Desactiva los efectos de cámara.
         }
     }
-
 }
