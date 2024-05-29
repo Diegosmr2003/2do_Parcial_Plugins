@@ -36,13 +36,12 @@ public class Effects : MonoBehaviour {
 	private Material gMat;
 	private Material cb;
 
-    void Start () {
+	void Start () {
 		cAndB = Shader.Find ("Hidden/Contrast&Brightness");
 		cb = new Material (cAndB);
 		cb.hideFlags = HideFlags.HideAndDontSave;
 		CheckHWSupport ();
-
-    }
+	}
 
 	Material material {
 		get {
@@ -123,6 +122,4 @@ public class Effects : MonoBehaviour {
         }
         return true;
     }
-
-
 }

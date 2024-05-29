@@ -20,4 +20,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Memory_Results.unity
     guid: 7b1900853f592204697a600089ab02f2
+  - enabled: 1
+    path: Assets/Scenes/BossRoom.unity
+    guid: e41f03f57d6e28c43b9efa684b3f82be
   m_configObjects: {}
