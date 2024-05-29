@@ -76,6 +76,7 @@ public class CamSwitch : MonoBehaviour
                 if (gun != null)
                 {
                     gun.transform.rotation = cam1.transform.rotation;
+                    gun.transform.position = cam1.transform.position;
                 }
             }
         }
@@ -111,6 +112,7 @@ public class CamSwitch : MonoBehaviour
                 if (gun != null)
                 {
                     gun.transform.rotation = cam2.transform.rotation;
+                    gun.transform.position = cam2.transform.position;
                 }
             }
         }

@@ -75,7 +75,6 @@ public class MonsterSFX : MonoBehaviour
         if (Vector3.Distance(transform.position, player.position) < 12f && Vector3.Distance(transform.position, player.position) > 1f)    // Si el jugador está a una distancia entre 1 y 12 unidades.
         {
             detected = true; // Marca que el jugador ha sido detectado.
-            print("Efecto activado"); // Imprime un mensaje en la consola.
             if (cameraFx != null)
             {
                 cameraFx.activateEffect(); // Activa los efectos de cámara.
@@ -83,7 +82,6 @@ public class MonsterSFX : MonoBehaviour
         }
         else if (detected)    // Si el jugador ha sido detectado.
         {
-            print("Efecto desactivado"); // Imprime un mensaje en la consola.
             detected = false; // Marca que el jugador ya no está detectado.
             if (cameraFx != null)
             {
