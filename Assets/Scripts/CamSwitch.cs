@@ -18,26 +18,23 @@ public class CamSwitch : MonoBehaviour
         {
             playerCam1 = cam1.GetComponent<PlayerCam>();
         }
-        else
+        else if (cam1 == null)
         {
             Debug.LogError("cam1 no está asignada.");
         }
-
-        if (cam2 != null)
+        else if (cam2 != null)
         {
             playerCam2 = cam2.GetComponent<PlayerCam>();
         }
-        else
+        else if(cam2 == null)
         {
             Debug.LogError("cam2 no está asignada.");
         }
-
-        if (camAux == null)
+        else if (camAux == null)
         {
             Debug.LogError("camAux no está asignada.");
         }
-
-        if (gun == null)
+        else if (gun == null)
         {
             Debug.LogError("gun no está asignada.");
         }
@@ -76,7 +73,7 @@ public class CamSwitch : MonoBehaviour
                 if (gun != null)
                 {
                     gun.transform.rotation = cam1.transform.rotation;
-                    gun.transform.position = cam1.transform.position;
+                    gun.transform.position = cam1.transform.position; //Para que la pistola no se mueva de lugar como pasaba anteriormente
                 }
             }
         }

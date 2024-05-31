@@ -126,9 +126,8 @@ public class GuardianScript : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("JUGADOR"))
         {
-            // Detén al guardián para evitar empujar al jugador
+            // Detener al guardián para evitar empujar al jugador
             agenteNavMesh.isStopped = true;
-            // Puedes implementar aquí la lógica de "perder la partida"
             Debug.Log("Jugador capturado");
         }
     }
