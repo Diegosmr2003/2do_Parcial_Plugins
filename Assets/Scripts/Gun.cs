@@ -50,8 +50,10 @@ public class Gun : MonoBehaviour
             bullet.GetComponent<Rigidbody>().velocity = bulletSpawnPoint.forward * bulletSpeed; //Le damos la velocidad y direccion adecuada a la bala
             
         }
-
-        
-
+    }
+    public void AddAmmo(int amount)
+    {
+        ammo += amount;
+        bulletcount.text = "Bullets: " + ammo;
     }
 }

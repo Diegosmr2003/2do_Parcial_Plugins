@@ -12,15 +12,7 @@ public class AudioManager : MonoBehaviour
     //public AudioClip background;
     public AudioClip gunshoot; //Pistola dispara
     public AudioClip gunnoammo; //Pistola sin balas
-    //public AudioClip chase;
-    //public AudioClip nearguardian;
-
-    /*private void Start()
-    {
-        //musicSource.clip = background;
-        //musicSource.Play();
-      
-    }*/
+    
 
    
     public void playSFX(AudioClip clip) //Este método es público para que se pueda acceder a él mediante otros scripts
