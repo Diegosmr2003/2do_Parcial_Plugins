@@ -29,6 +29,6 @@ public class Bullet : MonoBehaviour
 
     private void Update()
     {
-        Destroy(gameObject, 0.2f); //Si no colisiona ni con paredes, techo, piso o guardian, destruye la bala despues de 0.2 segundos
+        Destroy(gameObject, 0.5f); //Si no colisiona ni con paredes, techo, piso o guardian, destruye la bala despues de 0.2 segundos
     }
 }

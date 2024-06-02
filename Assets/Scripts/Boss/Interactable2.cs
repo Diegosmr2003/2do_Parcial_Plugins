@@ -10,7 +10,7 @@ public class Interactable2 : MonoBehaviour
     public Color interactedEmissionColor;
     public Animator animator;
     public KeyCode interactionKey;
-    public Gun gun;
+    public HealthBar healthBar;
 
     [Header("----------Audio Source-----------")]
     [SerializeField]
@@ -26,6 +26,7 @@ public class Interactable2 : MonoBehaviour
     {
         glowMaterial.SetColor("_EmissionColor", defaultEmissionColor * glowIntensity);
         effectSource = GetComponent<AudioSource>();
+        healthBar = FindObjectOfType<HealthBar>();
         effectSource.clip = openCrate;
     }
 
@@ -37,7 +38,7 @@ public class Interactable2 : MonoBehaviour
             animator.SetTrigger("Open");
             effectSource.Play();
 
-            gun.AddAmmo(3);
+            healthBar.currentHealth += 10;
 
             hasBeenOpened = true;
         }

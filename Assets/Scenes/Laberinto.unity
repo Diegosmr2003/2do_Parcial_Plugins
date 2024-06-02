@@ -3529,6 +3529,7 @@ MonoBehaviour:
   bulletPrefab: {fileID: 1442301552780524456, guid: 6d66773a7958b8247befa8372e9e0e10, type: 3}
   bulletSpeed: 70
   ammo: 5
+  currentAmmo: 0
   bulletcount: {fileID: 1442884880}
 --- !u!1001 &533047356
 PrefabInstance:
