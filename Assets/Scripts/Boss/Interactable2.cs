@@ -38,7 +38,11 @@ public class Interactable2 : MonoBehaviour
             animator.SetTrigger("Open");
             effectSource.Play();
 
-            healthBar.currentHealth += 10;
+            if(healthBar.currentHealth < 100)
+            {
+                healthBar.currentHealth += 10;
+            }
+            
 
             hasBeenOpened = true;
         }

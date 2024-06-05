@@ -26,4 +26,9 @@ public class MainMenu : MonoBehaviour
     {
         SceneManager.LoadScene(2); //Carga la escena del memorama
     }
+
+    public void BossRoom()
+    {
+        SceneManager.LoadScene(5); //Carga la escena del Boss
+    }
 }

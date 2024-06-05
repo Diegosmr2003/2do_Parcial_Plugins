@@ -4,6 +4,12 @@ using UnityEngine;
 
 public class Bullet : MonoBehaviour
 {
+    BossHealthBar bossHealthBar;
+
+    private void Start()
+    {
+        bossHealthBar = FindObjectOfType<BossHealthBar>();
+    }
 
     private void OnTriggerEnter(Collider other) //Este es ontriggerenter porque el guardian tiene un isTrigger
     {
@@ -15,7 +21,17 @@ public class Bullet : MonoBehaviour
             Score.contador += 100; // Se suman 10 puntos al contador del marcador. 
         }
 
+        if (other.gameObject.name == "Xenomorph")
+        {
+            if(bossHealthBar.currentBossHealth > 0)
+            {
+                bossHealthBar.currentBossHealth -= 1000;
+                Score.contador += 50;
+            }
+        }
+
     }
+
 
     private void OnCollisionEnter(Collision collision) //Este es oncollision porque las paredes, techo y piso no tienen isTrigger
     {

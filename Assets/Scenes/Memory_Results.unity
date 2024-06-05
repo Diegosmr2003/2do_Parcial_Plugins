@@ -919,7 +919,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 960, y: 836.45}
-  m_SizeDelta: {x: 1691.152, y: 488.702}
+  m_SizeDelta: {x: 1920, y: 488.702}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1519081729
 MonoBehaviour:
@@ -941,7 +941,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: You Survived the Backrooms!
+  m_text: What to do next ...
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 01483dafa7af56d44aa90f94fe8c48a9, type: 2}
   m_sharedMaterial: {fileID: -8540313021572815871, guid: 01483dafa7af56d44aa90f94fe8c48a9, type: 2}
@@ -1071,7 +1071,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   musicSource: {fileID: 1763219502}
-  background: {fileID: 8300000, guid: c76715187296ab94f9c53f8b20ed731e, type: 3}
+  background: {fileID: 8300000, guid: 52206da9d8cd1c845a1a81ac359918ac, type: 3}
 --- !u!82 &1763219502
 AudioSource:
   m_ObjectHideFlags: 0
@@ -1263,7 +1263,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Main Menu
+  m_text: Boss Room
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 01483dafa7af56d44aa90f94fe8c48a9, type: 2}
   m_sharedMaterial: {fileID: -8540313021572815871, guid: 01483dafa7af56d44aa90f94fe8c48a9, type: 2}
