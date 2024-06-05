@@ -567,7 +567,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1256438090}
         m_TargetAssemblyTypeName: MainMenu, Assembly-CSharp
-        m_MethodName: Back2Main
+        m_MethodName: BossRoom
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -941,7 +941,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: What to do next ...
+  m_text: What to do ...
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 01483dafa7af56d44aa90f94fe8c48a9, type: 2}
   m_sharedMaterial: {fileID: -8540313021572815871, guid: 01483dafa7af56d44aa90f94fe8c48a9, type: 2}
